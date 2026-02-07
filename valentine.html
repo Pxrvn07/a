@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Aishu ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rose-pink: #ff6b9d;
+            --soft-pink: #ffc2d4;
+            --cream: #fff5f7;
+            --deep-rose: #c9184a;
+            --gold: #ffd700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, var(--cream) 0%, #ffe5ec 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Question Screen */
+        .question-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--cream) 0%, #ffe5ec 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .question-container {
+            text-align: center;
+            padding: 40px;
+            animation: scaleIn 0.8s ease-out;
+        }
+
+        .question-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            color: var(--deep-rose);
+            margin-bottom: 30px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .question-text {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.5rem;
+            color: var(--rose-pink);
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.2);
+        }
+
+        .question-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .yes-btn, .no-btn {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, var(--rose-pink), var(--deep-rose));
+            color: white;
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(255, 107, 157, 0.5);
+        }
+
+        .no-btn {
+            background: white;
+            color: var(--deep-rose);
+            border: 2px solid var(--rose-pink);
+            position: relative;
+        }
+
+        .no-btn:hover {
+            background: var(--soft-pink);
+        }
+
+        /* Floating hearts background */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float-up 8s infinite ease-in;
+            opacity: 0;
+        }
+
+        /* Static background hearts */
+        .bg-heart {
+            position: absolute;
+            font-size: 25px;
+            opacity: 0.15;
+            animation: gentle-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes gentle-pulse {
+            0%, 100% { 
+                opacity: 0.15;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 0.25;
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes float-up {
+            0% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh);
+            }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 100%;
+            padding: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* Header section */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            color: var(--deep-rose);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--rose-pink);
+            font-style: italic;
+        }
+
+        /* Love letter card */
+        .love-letter {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 10px 40px rgba(255, 107, 157, 0.2);
+            border: 2px solid var(--soft-pink);
+            position: relative;
+            animation: slideUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .love-letter::before {
+            content: '💌';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 2.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .love-letter h2 {
+            font-family: 'Pacifico', cursive;
+            color: var(--deep-rose);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .love-letter p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        /* Interactive buttons */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 30px auto;
+            max-width: 400px;
+            animation: slideUp 1s ease-out 0.6s both;
+        }
+
+        .interactive-btn {
+            background: linear-gradient(135deg, var(--rose-pink), var(--deep-rose));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interactive-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .interactive-btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .interactive-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
+        }
+
+        /* Modal/Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 90%;
+            text-align: center;
+            animation: scaleIn 0.3s ease;
+            box-shadow: 0 10px 50px rgba(255, 107, 157, 0.5);
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-content h3 {
+            font-family: 'Pacifico', cursive;
+            color: var(--deep-rose);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background: var(--rose-pink);
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 30px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Gallery section */
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 30px auto;
+            max-width: 400px;
+            animation: slideUp 1s ease-out 0.9s both;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px) rotate(2deg);
+            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.3);
+        }
+
+        .gallery-item .emoji {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: wiggle 1s ease infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .gallery-item p {
+            color: var(--deep-rose);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Music control */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--rose-pink), var(--deep-rose));
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
+            z-index: 100;
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+        }
+
+        .music-control.playing {
+            animation: float 3s ease-in-out infinite, spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Countdown timer */
+        .countdown {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 10px 40px rgba(255, 107, 157, 0.2);
+            text-align: center;
+            animation: slideUp 1s ease-out 1.2s both;
+        }
+
+        .countdown h3 {
+            font-family: 'Pacifico', cursive;
+            color: var(--deep-rose);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .time-unit {
+            background: linear-gradient(135deg, var(--soft-pink), var(--rose-pink));
+            padding: 15px 20px;
+            border-radius: 15px;
+            min-width: 70px;
+        }
+
+        .time-unit .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            display: block;
+        }
+
+        .time-unit .label {
+            font-size: 0.8rem;
+            color: var(--cream);
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Initial Question Screen -->
+    <div class="question-screen" id="questionScreen">
+        <div class="question-container">
+            <h1 class="question-title">Aishu...</h1>
+            <h2 class="question-text">Will you be my Valentine? 💝</h2>
+            <div class="question-buttons">
+                <button class="yes-btn" onclick="showValentineCard()">Yes! 💕</button>
+                <button class="no-btn" id="noBtn" onmouseover="moveNoButton()" onclick="showValentineCard()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content (hidden initially) -->
+    <div class="container" id="mainContent" style="display: none;">
+        <div class="header">
+            <h1>For Aishu ❤️</h1>
+            <p>My Valentine Forever</p>
+        </div>
+
+        <div class="love-letter">
+            <h2>Dear Aishu,</h2>
+            <p>Every moment with you feels like a beautiful Tamil melody - sweet, soulful, and unforgettable. You're my kanmani, my thangam, my everything.</p>
+            <p>On this Valentine's Day, I want you to know that you make my world more colorful, my heart more joyful, and my life more meaningful.</p>
+            <p>Forever yours,<br>With all my love 💕</p>
+        </div>
+
+        <div class="countdown">
+            <h3>Together Since Aug 29, 2024 ⏰</h3>
+            <div class="timer" id="timer">
+                <div class="time-unit">
+                    <span class="number" id="days">00</span>
+                    <span class="label">Days</span>
+                </div>
+                <div class="time-unit">
+                    <span class="number" id="hours">00</span>
+                    <span class="label">Hours</span>
+                </div>
+                <div class="time-unit">
+                    <span class="number" id="minutes">00</span>
+                    <span class="label">Minutes</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for messages -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Message</h3>
+            <p id="modalText"></p>
+            <button class="close-btn" onclick="closeModal()">Close 💕</button>
+        </div>
+    </div>
+
+    <!-- Music control button -->
+    <button class="music-control" id="musicBtn" onclick="toggleMusic()">🎵</button>
+
+    <!-- Audio element for background music -->
+    <audio id="bgMusic" loop>
+        <source src="Aval.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Show valentine card function
+        function showValentineCard() {
+            const questionScreen = document.getElementById('questionScreen');
+            const mainContent = document.getElementById('mainContent');
+            
+            // Start music immediately when Yes is clicked
+            const music = document.getElementById('bgMusic');
+            music.play().then(() => {
+                musicPlaying = true;
+                document.getElementById('musicBtn').classList.add('playing');
+                document.getElementById('musicBtn').textContent = '🎶';
+            }).catch(err => {
+                console.log('Music autoplay blocked:', err);
+            });
+            
+            // Fade out question screen
+            questionScreen.style.animation = 'fadeOut 0.5s ease-out';
+            
+            setTimeout(() => {
+                questionScreen.style.display = 'none';
+                mainContent.style.display = 'block';
+                mainContent.style.animation = 'fadeIn 1s ease-in';
+                
+                // Start animations
+                createBackgroundHearts();
+                createFloatingHearts();
+                updateTimer();
+            }, 500);
+        }
+
+        // Make "No" button move away on hover (playful interaction)
+        function moveNoButton() {
+            const noBtn = document.getElementById('noBtn');
+            const maxX = window.innerWidth - noBtn.offsetWidth - 40;
+            const maxY = window.innerHeight - noBtn.offsetHeight - 40;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            noBtn.style.transition = 'all 0.3s ease';
+        }
+
+        // Messages for interactive buttons
+        const messages = {
+            reason1: {
+                title: "Why You're Special ✨",
+                text: "Aishu, you light up my world like the morning sun. Your smile is my favorite thing in the universe, and your kindness touches everyone around you. You're not just special - you're extraordinary! 🌟"
+            },
+            reason2: {
+                title: "What Makes Me Smile 😊",
+                text: "Your laugh, the way you care for others, your beautiful eyes, and those little moments we share together. Every single thing about you fills my heart with joy and makes me grateful every day! 💕"
+            },
+            reason3: {
+                title: "Our Future Together 🌟",
+                text: "I dream of countless adventures with you - morning coffees, sunset walks, dancing in the rain, and growing old together. With you, every day is Valentine's Day. I can't wait for all our tomorrows! 🥰"
+            }
+        };
+
+        // Show modal with message
+        function showMessage(type) {
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modalTitle');
+            const text = document.getElementById('modalText');
+            
+            title.textContent = messages[type].title;
+            text.textContent = messages[type].text;
+            modal.classList.add('active');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        // Create floating hearts and love stickers
+        function createFloatingHearts() {
+            const container = document.getElementById('heartsContainer');
+            
+            setInterval(() => {
+                const sticker = document.createElement('div');
+                sticker.className = 'heart';
+                sticker.textContent = '💗';
+                sticker.style.left = Math.random() * 100 + '%';
+                sticker.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                sticker.style.animationDelay = (Math.random() * 2) + 's';
+                sticker.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                
+                container.appendChild(sticker);
+                
+                setTimeout(() => {
+                    sticker.remove();
+                }, 10000);
+            }, 300);
+        }
+
+        // Create static background hearts
+        function createBackgroundHearts() {
+            const container = document.getElementById('heartsContainer');
+            
+            // Create hearts scattered all over
+            for (let i = 0; i < 50; i++) {
+                const bgHeart = document.createElement('div');
+                bgHeart.className = 'bg-heart';
+                bgHeart.textContent = '💗';
+                bgHeart.style.left = Math.random() * 100 + '%';
+                bgHeart.style.top = Math.random() * 100 + '%';
+                bgHeart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                bgHeart.style.animationDelay = (Math.random() * 3) + 's';
+                
+                container.appendChild(bgHeart);
+            }
+        }
+
+        // Create heart burst effect
+        function createHeartBurst() {
+            const burst = 15;
+            const container = document.body;
+            
+            for (let i = 0; i < burst; i++) {
+                const heart = document.createElement('div');
+                heart.textContent = '💗';
+                heart.style.position = 'fixed';
+                heart.style.left = '50%';
+                heart.style.top = '50%';
+                heart.style.fontSize = '30px';
+                heart.style.pointerEvents = 'none';
+                heart.style.zIndex = '9999';
+                
+                const angle = (Math.PI * 2 * i) / burst;
+                const velocity = 200;
+                
+                container.appendChild(heart);
+                
+                let posX = 0;
+                let posY = 0;
+                const animation = setInterval(() => {
+                    posX += Math.cos(angle) * 5;
+                    posY += Math.sin(angle) * 5;
+                    heart.style.transform = `translate(${posX}px, ${posY}px)`;
+                    heart.style.opacity = parseFloat(heart.style.opacity || 1) - 0.02;
+                    
+                    if (parseFloat(heart.style.opacity) <= 0) {
+                        clearInterval(animation);
+                        heart.remove();
+                    }
+                }, 20);
+            }
+        }
+
+        // Music control
+        let musicPlaying = false;
+        
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const musicBtn = document.getElementById('musicBtn');
+            
+            if (musicPlaying) {
+                music.pause();
+                musicBtn.classList.remove('playing');
+                musicBtn.textContent = '🎵';
+            } else {
+                music.play();
+                musicBtn.classList.add('playing');
+                musicBtn.textContent = '🎶';
+            }
+            musicPlaying = !musicPlaying;
+        }
+
+        // Countdown timer (counts up from August 29, 2024)
+        function updateTimer() {
+            const startDate = new Date('2024-08-29T00:00:00').getTime();
+            
+            setInterval(() => {
+                const now = new Date().getTime();
+                const elapsed = now - startDate;
+                
+                const days = Math.floor(elapsed / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((elapsed % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((elapsed % (1000 * 60 * 60)) / (1000 * 60));
+                
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            }, 1000);
+        }
+
+        // Close modal on outside click
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
